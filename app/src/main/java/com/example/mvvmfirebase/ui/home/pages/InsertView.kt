@@ -154,6 +154,7 @@ fun FormMahasiswa(
             label = { Text(text = "Angkatan") },
             isError = errorState.angkatan != null,
             placeholder = { Text(text = "Masukkan Angkatan") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.DateRange,
