@@ -135,7 +135,7 @@ fun MhsLayout(
                     mahasiswa = mhs,
                     modifier = Modifier.fillMaxWidth()
                         .clickable{onDetailClick(mhs.toString())},
-                    onDeleteClick = { onDeleteClick(mhs ) },
+                    onDeleteClick = { onDeleteClick(mhs) },
                 )
             }
         )
@@ -161,8 +161,8 @@ fun HomeStatus(
                 onDetailClick = {
                     onDetailClick(it)
                 },
-                onDeleteClick = {
-                    onDeleteClick(it)
+                onDeleteClick = { mhs ->
+                    deleteConfirmationRequired = mhs
                 },
             )
             deleteConfirmationRequired?.let { data ->
@@ -245,7 +245,8 @@ fun HomeScreen(
             homeUiState = viewModel.mhsUIState,
             retryAction = { viewModel.getMhs() },
             modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
+            onDetailClick = onDetailClick,
+            onDeleteClick = {
                 viewModel.deleteMhs(it)
             }
         )

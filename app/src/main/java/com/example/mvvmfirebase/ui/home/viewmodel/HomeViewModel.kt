@@ -1,6 +1,7 @@
 package com.example.mvvmfirebase.ui.home.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +51,7 @@ class HomeViewModel (
             try {
                 repositoryMhs.deleteMhs(mahasiswa)
             } catch (e: Exception) {
+                Log.e("DeleteMhs", "Gagal menghapus mahasiswa: ${e.message}")
                 mhsUIState = HomeUiState.Error(e)
             }
         }
