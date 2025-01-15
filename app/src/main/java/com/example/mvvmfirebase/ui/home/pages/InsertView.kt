@@ -11,9 +11,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
@@ -28,6 +31,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -36,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -190,6 +195,63 @@ fun FormMahasiswa(
             text = errorState.angkatan ?: "",
             color = Color.Red
         )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.judulSkripsi,
+            onValueChange = { onValueChange(mahasiswaEvent.copy(judulSkripsi = it)) },
+            label = { Text(text = "Judul Skripsi") },
+            isError = errorState.judulSkripsi != null,
+            placeholder = { Text(text = "Masukkan Judul") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Book,
+                    contentDescription = "Person Icon"
+                )
+            }
+        )
+        Text(
+            text = errorState.judulSkripsi ?: "",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.dosenPembimbing1,
+            onValueChange = { onValueChange(mahasiswaEvent.copy(dosenPembimbing1 = it)) },
+            label = { Text(text = "Dosen Pembimbing 1") },
+            isError = errorState.dosenPembimbing1 != null,
+            placeholder = { Text(text = "Masukkan Dosen") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Person Icon"
+                )
+            }
+        )
+        Text(
+            text = errorState.dosenPembimbing1 ?: "",
+            color = Color.Red
+        )
+
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = mahasiswaEvent.dosenPembimbing2,
+            onValueChange = { onValueChange(mahasiswaEvent.copy(dosenPembimbing2 = it)) },
+            label = { Text(text = "Dosen Pembimbing 2") },
+            isError = errorState.dosenPembimbing2 != null,
+            placeholder = { Text(text = "Masukkan Dosen") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Person Icon"
+                )
+            }
+        )
+        Text(
+            text = errorState.dosenPembimbing2 ?: "",
+            color = Color.Red
+        )
     }
 }
 
@@ -291,7 +353,8 @@ fun InsertMhsView (
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
         ){
             InsertBodyMhs(
                 uiState = uiEvent,
