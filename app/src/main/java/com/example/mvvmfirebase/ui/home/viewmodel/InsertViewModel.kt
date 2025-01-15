@@ -34,7 +34,8 @@ class InsertViewModel (
             alamat = if (event.alamat.isEmpty()) "Alamat Tidak Boleh Kosong" else null,
             jenisKelamin = if (event.jenisKelamin.isEmpty()) "Jenis Kelamin Tidak Boleh Kosong" else null,
             kelas = if (event.kelas.isEmpty()) "Kelas Tidak Boleh Kosong" else null,
-            angkatan = if (event.angkatan.isEmpty()) "Angkatan Tidak Boleh Kosong" else null
+            angkatan = if (event.angkatan.isEmpty()) "Angkatan Tidak Boleh Kosong" else null,
+
         )
 
         uiEvent = uiEvent.copy(isEntryValid = errorState)
@@ -86,11 +87,15 @@ data class FormErrorState(
     val alamat: String? = null,
     val jenisKelamin: String? = null,
     val kelas: String? = null,
-    val angkatan: String? = null
+    val angkatan: String? = null,
+    val judulSkripsi: String? = null,
+    val dosenPembimbing1: String? = null,
+    val dosenPembimbing2: String? = null,
 ) {
     fun isValid(): Boolean {
         return nim == null && nama == null && alamat == null &&
-                jenisKelamin == null && kelas == null && angkatan == null
+                jenisKelamin == null && kelas == null && angkatan == null &&
+                judulSkripsi == null && dosenPembimbing1 == null && dosenPembimbing2 == null
     }
 }
 
@@ -100,7 +105,10 @@ data class MahasiswaEvent(
     val alamat: String = "",
     val jenisKelamin: String = "",
     val kelas: String = "",
-    val angkatan: String = ""
+    val angkatan: String = "",
+    val judulSkripsi: String = "",
+    val dosenPembimbing1: String = "",
+    val dosenPembimbing2: String = "",
 )
 
 // Menyimpan Input Form Ke Dalam Entity
@@ -110,5 +118,8 @@ fun MahasiswaEvent.toMhsModel(): Mahasiswa = Mahasiswa(
     alamat = alamat,
     jenisKelamin = jenisKelamin,
     kelas = kelas,
-    angkatan = angkatan
+    angkatan = angkatan,
+    judulSkripsi = judulSkripsi,
+    dosenPembimbing1 = dosenPembimbing1,
+    dosenPembimbing2 = dosenPembimbing2,
 )
