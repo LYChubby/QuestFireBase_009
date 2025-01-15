@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.mvvmfirebase.MahasiswaApp
+import com.example.mvvmfirebase.ui.home.viewmodel.DetailViewModel
 import com.example.mvvmfirebase.ui.home.viewmodel.HomeViewModel
 import com.example.mvvmfirebase.ui.home.viewmodel.InsertViewModel
 
@@ -18,6 +19,9 @@ object PenyediaViewModel{
         }
         initializer {
             InsertViewModel(mahasiswaApp().container.repositoryMhs)
+        }
+        initializer {
+            DetailViewModel(mahasiswaApp().container.repositoryMhs)
         }
     }
 }
