@@ -28,7 +28,7 @@ class DetailViewModel (
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getMhs() {
         viewModelScope.launch {
-            repositoryMhs.getAllMhs()
+            repositoryMhs.getMhs()
                 .onStart {
                     detailUIState = DetailUiState.Loading
                 }
@@ -49,6 +49,6 @@ class DetailViewModel (
 sealed class DetailUiState {
     object Loading : DetailUiState()
 
-    data class Success(val data: List<Mahasiswa>) : DetailUiState()
+    data class Success(val mahasiswa: Mahasiswa) : DetailUiState()
     data class Error(val e: Throwable) : DetailUiState()
 }

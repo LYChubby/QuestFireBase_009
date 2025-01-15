@@ -265,8 +265,7 @@ fun InsertBodyMhs (
 ) {
 
     Column (
-        modifier = Modifier.fillMaxWidth()
-            .verticalScroll(rememberScrollState()),
+        modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
@@ -355,7 +354,6 @@ fun InsertMhsView (
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp)
-                .verticalScroll(rememberScrollState()),
         ){
             InsertBodyMhs(
                 uiState = uiEvent,
